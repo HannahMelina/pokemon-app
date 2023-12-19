@@ -1,38 +1,115 @@
 .App {
-  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-family: cursive;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background-color: white;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.TitleSection {
+  background-color: #f31212;
+  width: 100vw;
+  height: 33%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-size: 30px;
+}
+
+.TitleSection input {
+  width: auto;
+  min-width: 10%;
+  height: 30px;
+  border-radius: 8px;
+  border: 2px #0039b1 solid;
+  font-size: 18px;
+  padding-left: 5px;
+  background-color: white;
+}
+
+.TitleSection input:focus {
+  background-color: rgb(255, 239, 239);
+}
+
+.TitleSection:focus,
+input:focus {
+  outline: none;
+}
+
+.TitleSection input:hover {
+  background-color: rgb(255, 239, 239);
+}
+
+.TitleSection button {
+  width: auto;
+  min-width: 100px;
+  height: auto;
+  min-height: 30px;
+  margin: 20px;
+  border-radius: 8px;
+  border: 2px #0039b1 solid;
+  font-size: 18px;
+  background-color: white;
+}
+
+.TitleSection button:focus {
+  background-color: rgb(255, 239, 239);
+}
+
+.TitleSection button:hover {
+  cursor: pointer;
+  background-color: rgb(255, 239, 239);
+}
+
+.DisplaySection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.DisplaySection h1 {
+  font-size: 40px;
+}
+
+.DisplaySection h3 {
+  min-width: 200px;
+  padding: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+  margin: 5px;
+  background-color: rgb(209, 209, 209);
+  border: 2px solid #0039b1;
+  border-radius: 8px;
+  font-size: 20px;
+  display: inline-flex;
+  align-items: center;
+  flex-direction: inline;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.DisplaySection img {
+  width: auto;
+  min-width: 200px;
+  align-items: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.DisplaySection h5 {
+  margin: 3px;
+  border-radius: 8px;
+  border: 2px #0039b1 solid;
+  padding: 10px;
+  font-size: 15px;
+  display: inline-flex;
+  width: 250px;
+  background-color: #fc5353;
+}
+
+.move {
+  width: fit-content;
+  background-color: rgb(209, 209, 209);
+  border: 2px solid #0039b1;
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 20px;
 }
