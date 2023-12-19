@@ -5,6 +5,7 @@ import axios from "axios";
 function App() {
   const [pkmName, setPkmName] = useState("");
   const [pkmChosen, setPkmChosen] = useState(false);
+  const [searchError, setSearchError] = useState("");
 
   const [pkmInfo, setPkmInfo] = useState({
     name: "",
@@ -42,6 +43,11 @@ function App() {
           ),
         });
         setPkmChosen(true);
+        setSearchError("");
+      })
+      .catch((error) => {
+        console.error(error);
+        setSearchError("No pokemon found for your search");
       });
   };
 
@@ -68,79 +74,86 @@ function App() {
         </button>
       </div>
       <div className="DisplaySection">
-        {!pkmChosen ? (
-          <h1>Choose your Pokemon!</h1>
+        {searchError ? (
+          <p className="search-error">{searchError}</p>
         ) : (
           <>
-            <h1>
-              {pkmInfo.name.toUpperCase().slice(0, 1).toUpperCase() +
-                pkmInfo.name.slice(1, pkmInfo.name.length)}
-            </h1>
+            {" "}
+            {!pkmChosen ? (
+              <h1>Choose your Pokemon!</h1>
+            ) : (
+              <>
+                <h1>
+                  {pkmInfo.name.toUpperCase().slice(0, 1).toUpperCase() +
+                    pkmInfo.name.slice(1, pkmInfo.name.length)}
+                </h1>
 
-            <img alt="" src={pkmInfo.img} />
+                <img alt="" src={pkmInfo.img} />
 
-            <h2>{`informations about ${pkmInfo.name}`}</h2>
-            <div>
-              <h5>
-                type:{" "}
-                {pkmInfo.type.map((type, index) => {
-                  if (index === pkmInfo.type.length - 1) {
-                    return type.type.name;
-                  }
-                  return type.type.name + ", ";
-                })}
-              </h5>
-              <h5>
-                ability:{" "}
-                {pkmInfo.ability.map((ability, index) => {
-                  if (index === pkmInfo.ability.length - 1) {
-                    return ability.ability.name;
-                  }
-                  return ability.ability.name + ", ";
-                })}
-              </h5>
-              <h5>
-                hidden ability:{" "}
-                {pkmInfo.hiddenability.map((ability, index) => {
-                  if (index === pkmInfo.hiddenability.length - 1) {
-                    return ability.ability.name;
-                  }
-                  return ability.ability.name + ", ";
-                })}
-              </h5>
-              <h5>weight: {pkmInfo.weight}</h5>
-            </div>
-            <h2>Values with maximum EV and nature</h2>
-
-            <div>
-              <h3>HP: {pkmInfo.hp}</h3>
-              <h3>attack: {pkmInfo.attack}</h3>
-              <h3>defense: {pkmInfo.defense}</h3>
-              <h3>special attack: {pkmInfo.specialAttack}</h3>
-              <h3>special defense: {pkmInfo.specialDefense}</h3>
-              <h3>initiative: {pkmInfo.speed}</h3>
-            </div>
-
-            <h2>Attacks that can be learned and the level required:</h2>
-            <div>
-              <h2 className="move">
-                {pkmInfo.move.map((move, index) => {
-                  if (index === pkmInfo.move.length - 1) {
-                  }
-
-                  return (
-                    <li>
-                      {move.move.name}, Learned at Lv:
-                      {
-                        move.version_group_details[
-                          move.version_group_details.length - 1
-                        ].level_learned_at
+                <h2>{`informations about ${pkmInfo.name}`}</h2>
+                <div>
+                  <h5>
+                    type:{" "}
+                    {pkmInfo.type.map((type, index) => {
+                      if (index === pkmInfo.type.length - 1) {
+                        return type.type.name;
                       }
-                    </li>
-                  );
-                })}
-              </h2>
-            </div>
+                      return type.type.name + ", ";
+                    })}
+                  </h5>
+                  <h5>
+                    ability:{" "}
+                    {pkmInfo.ability.map((ability, index) => {
+                      if (index === pkmInfo.ability.length - 1) {
+                        return ability.ability.name;
+                      }
+                      return ability.ability.name + ", ";
+                    })}
+                  </h5>
+                  <h5>
+                    hidden ability:{" "}
+                    {pkmInfo.hiddenability.map((ability, index) => {
+                      if (index === pkmInfo.hiddenability.length - 1) {
+                        return ability.ability.name;
+                      }
+                      return ability.ability.name + ", ";
+                    })}
+                  </h5>
+                  <h5>weight: {pkmInfo.weight}</h5>
+                </div>
+                <h2>Values with maximum EV and nature</h2>
+
+                <div>
+                  <h3>HP: {pkmInfo.hp}</h3>
+                  <h3>attack: {pkmInfo.attack}</h3>
+                  <h3>defense: {pkmInfo.defense}</h3>
+                  <h3>special attack: {pkmInfo.specialAttack}</h3>
+                  <h3>special defense: {pkmInfo.specialDefense}</h3>
+                  <h3>initiative: {pkmInfo.speed}</h3>
+                </div>
+
+                <h2>Attacks that can be learned and the level required:</h2>
+                <div>
+                  <h2 className="move">
+                    {pkmInfo.move.map((move, index) => {
+                      if (index === pkmInfo.move.length - 1) {
+                      }
+
+                      return (
+                        <li>
+                          {move.move.name}, Learned at Lv:
+                          {
+                            move.version_group_details[
+                              move.version_group_details.length - 1
+                            ].level_learned_at
+                          }
+                        </li>
+                      );
+                    })}
+                  </h2>
+                </div>
+              </>
+            )}
           </>
         )}
       </div>
